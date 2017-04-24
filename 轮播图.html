@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		    *{margin: 0;padding: 0;list-style: none;}
+			#box{
+				width: 1130px;
+				height: 500px;
+				border: 1px solid #ccc;
+				margin: 50px auto;
+				overflow: hidden;
+				position: relative;
+			}
+			ul{
+				width: 6780px;
+				height: 500px;
+				
+			}
+			li{
+				width: 1130px;
+				height: 500px;
+				float: left;
+			
+			}
+			#point{
+				width: 300px;
+				height: 30px;
+				position: absolute;
+				left: 50%;
+				margin-left: -150px;
+				bottom: 10px;
+				z-index: 1;
+			}
+			#point li{
+				width: 11px;
+				height: 11px;
+				border-radius: 50%;
+				border: 2px solid #00FA9A;
+				margin-left: 30px;
+				opacity: 0.7;
+				
+			}
+			.now{
+				background: orange;
+			}
+			#left{
+				width: 40px;
+				height: 80px;
+				background: #CCCCCC;
+				position: absolute;
+				margin-top: -40px;
+				top: 50%;
+				opacity: 0.7;
+				border-radius:5px ;
+				display: none;
+				
+			}
+			#right{
+				width: 40px;
+				height: 80px;
+				background: #CCCCCC;
+				position: absolute;
+				top: 50%;
+				margin-top: -40px;
+				right: 0;
+				opacity: 0.7;
+				border-radius:5px;
+				display: none;
+			}
+			#right img{
+				margin-top: 20px;
+			}
+			#left img{
+				margin-top: 20px;
+				margin-left: 8px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><img src="img/11.jpg"/></li>
+				<li><img src="img/12.jpg"/></li>
+				<li><img src="img/13.jpg"/></li>
+				<li><img src="img/14.jpg"/></li>
+				<li><img src="img/5.jpg"/></li>
+				<li><img src="img/11.jpg"/></li>
+				
+			</ul>
+			<ul id="point">
+				<li class="now"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+		</ul>
+			  <div id="left"  onclick="jian()"><img src="img/返回 (4).png"/></div>
+	          <div id="right" onclick="tim(clearInterval(timer))"><img src="img/更多 (2).png"/></div>
+		</div>
+		
+	  
+	    
+		<script type="text/javascript">
+			var ul=document.getElementsByTagName("ul")[0];
+			var point=document.getElementById("point").getElementsByTagName("li");
+			
+			var box=document.getElementById("box");
+			var left=document.getElementById("left");
+			var right=document.getElementById("right");
+			
+			var a=0;
+			var timer =setInterval(tim,2000);
+			box.onmouseover=function(){
+				clearInterval(timer)   //停止定时器
+				left.style.display="block";
+				right.style.display="block"
+				
+			}
+			box.onmouseout=function(){
+				timer =setInterval(tim,2000);
+				left.style.display="";
+				right.style.display=""
+			}
+			function tim () {
+				if(a==5){
+					
+					ul.style.marginLeft=0
+					a=0;
+				}
+				
+				a++;
+				startMove(ul,{"margin-left":a*(-1130)})
+	                  //给下面加点，跟随图片移动的第一种办法	
+//				for (var i = 0; i < point.length; i++) {
+//					
+//					if(a-2==i){
+//						point[i].style.background="orange";
+//					}
+//					else{
+//						point[i].style.background=""
+//					}
+//					
+//				
+//				}
+	                  //给下面加点，跟随图片移动的第一种办法	
+                      			
+				for (var i = 0; i < point.length; i++) {
+					point[i].className=""
+				}
+				    point[a>=5?0:a].className="now";
+				
+		        }
+            function jian () {
+            	clearInterval(timer)  
+            	if(a==0){
+					
+					ul.style.marginLeft=6780
+					a=5;
+				}
+				
+				a--;
+				startMove(ul,{"margin-left":a*(-1130)})
+            	for (var i = 0; i < point.length; i++) {
+					point[i].className=""
+				}
+				    point[a<=-1?5:a].className="now";
+				
+		        }
+            
+			
+			//点击 小园图片进行切换
+			for (var j = 0; j < point.length; j++) {
+				point[j].index=j;
+				point[j].onclick=function(){
+				clearInterval(timer)   //停止定时器
+				startMove(ul,{"margin-left":this.index*(-1130)})  //移动当前点击的li下标乘移动每个的值
+				 for (var k = 0; k < point.length; k++) {
+				 	point[k].className=""
+				 }
+				 	this.className="now";
+				 	a=this.index                //重新赋值给a ，
+				    timer =setInterval(timer,2000)//让定时器正常运行
+				    
+				}
+
+			}
+		</script>
+		<script src="base.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
