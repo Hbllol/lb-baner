@@ -11,7 +11,6 @@
 				border: 1px solid #ccc;
 				margin: 50px auto;
 				overflow: hidden;
-				position: relative;
 			}
 			ul{
 				width: 6780px;
@@ -28,9 +27,8 @@
 				width: 300px;
 				height: 30px;
 				position: absolute;
-				left: 50%;
-				margin-left: -150px;
-				bottom: 10px;
+				left: 40%;
+				top: 500px;
 				z-index: 1;
 			}
 			#point li{
@@ -50,8 +48,8 @@
 				height: 80px;
 				background: #CCCCCC;
 				position: absolute;
-				margin-top: -40px;
-				top: 50%;
+				left: 118px;
+				top: 250px;
 				opacity: 0.7;
 				border-radius:5px ;
 				display: none;
@@ -62,9 +60,8 @@
 				height: 80px;
 				background: #CCCCCC;
 				position: absolute;
-				top: 50%;
-				margin-top: -40px;
-				right: 0;
+				left: 1210px;
+				top: 250px;
 				opacity: 0.7;
 				border-radius:5px;
 				display: none;
@@ -90,18 +87,17 @@
 				<li><img src="img/11.jpg"/></li>
 				
 			</ul>
-			<ul id="point">
+			
+		</div>
+		<ul id="point">
 				<li class="now"></li>
 				<li></li>
 				<li></li>
 				<li></li>
 				<li></li>
 		</ul>
-			  <div id="left"  onclick="jian()"><img src="img/返回 (4).png"/></div>
-	          <div id="right" onclick="tim(clearInterval(timer))"><img src="img/更多 (2).png"/></div>
-		</div>
-		
-	  
+	    <div id="left"  onclick="jian()"><img src="img/返回 (4).png"/></div>
+	    <div id="right" onclick="tim(clearInterval(timer))"><img src="img/更多 (2).png"/></div>
 	    
 		<script type="text/javascript">
 			var ul=document.getElementsByTagName("ul")[0];
@@ -121,8 +117,7 @@
 			}
 			box.onmouseout=function(){
 				timer =setInterval(tim,2000);
-				left.style.display="";
-				right.style.display=""
+				
 			}
 			function tim () {
 				if(a==5){
@@ -182,7 +177,7 @@
 				 }
 				 	this.className="now";
 				 	a=this.index                //重新赋值给a ，
-				    timer =setInterval(timer,2000)//让定时器正常运行
+				    timer =setInterval(tim,2000)//让定时器正常运行
 				    
 				}
 
